@@ -1,10 +1,9 @@
 import java.io.*;
 import java.util.*;
-import java.text.SimpleDateFormat;
+import java.text.*;
 
 public class JarifGame {
-    public static void main(String[] args) throws IOException {
-        String inputFileName = "input.txt";
+    public static void main(String[] args) throws Exception {
         Scanner take = new Scanner(System.in);
 
         System.out.print("Enter your name: ");
@@ -28,7 +27,7 @@ public class JarifGame {
             System.exit(1);
         }
 
-        BufferedReader reader = new BufferedReader(new FileReader(inputFileName)); //speeds up file reading
+        BufferedReader reader = new BufferedReader(new FileReader("input.txt"));
         StringBuilder content = new StringBuilder();
         int ch;
         while ((ch = reader.read()) != -1) {
@@ -86,8 +85,7 @@ public class JarifGame {
         };
     }
 
-    // Append to File
-    private static void writeToFile(String user, int difficulty, int score, int total) throws IOException {
+    private static void writeToFile(String user, int difficulty, int score, int total) throws Exception {
         SimpleDateFormat stuff = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String curDate = stuff.format(new Date());
         String record = user + ", " + fetch2(difficulty) + ", " + score + "/" + total + ", " + curDate + "\n";
