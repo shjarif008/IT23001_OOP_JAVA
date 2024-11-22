@@ -10,9 +10,9 @@ public class JarifGame {
         String user = take.nextLine();
 
         System.out.println("Select a difficulty level: ");
-        System.out.println("1. Easy");
-        System.out.println("2. Medium");
-        System.out.println("3. Hard");
+        System.out.println("1. Easy - Question Count: 5");
+        System.out.println("2. Medium - Question Count: 10");
+        System.out.println("3. Hard - Question Count: 15");
 
         int difficulty = take.nextInt();
         int total = 0;
@@ -23,7 +23,7 @@ public class JarifGame {
         } else if (difficulty == 3) {
             total = 15;
         } else {
-            System.out.println("Invalid choice. Please restart the program.");
+            System.out.println("Invalid choice. Please restart.");
             System.exit(1);
         }
 
@@ -37,7 +37,7 @@ public class JarifGame {
 
         String[] maths = content.toString().split(",");
         if (maths.length < total) {
-            System.out.println("Not enough expressions in the file for the selected difficulty level.");
+            System.out.println("Not enough expressions in the file.");
             System.exit(1);
         }
 
@@ -59,7 +59,7 @@ public class JarifGame {
         }
 
         System.out.println("\n" + user + ", your final score is: " + score + "/" + total);
-        fileWriter(user, difficulty, score, total);
+        scoreWriter(user, difficulty, score, total);
     }
 
     private static int fetch(String math) {
@@ -81,15 +81,15 @@ public class JarifGame {
             case '-' -> num1 - num2;
             case '*' -> num1 * num2;
             case '/' -> num1 / num2;
-            default -> throw new IllegalArgumentException("Invalid operator in expression: " + math);
+            default -> throw new IllegalArgumentException("Invalid operator found: " + math);
         };
     }
 
-    private static void fileWriter(String user, int difficulty, int score, int total) throws Exception {
+    private static void scoreWriter(String user, int difficulty, int score, int total) throws Exception {
         SimpleDateFormat stuff = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String curDate = stuff.format(new Date());
         String record = user + ", " + fetch2(difficulty) + ", " + score + "/" + total + ", " + curDate + "\n";
-        FileWriter writer = new FileWriter("output.txt", true);
+        scoreWriter writer = new scoreWriter("output.txt", true);
         writer.write(record);
         writer.close();
     }
