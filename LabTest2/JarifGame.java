@@ -59,7 +59,7 @@ public class JarifGame {
         }
 
         System.out.println("\n" + user + ", your final score is: " + score + "/" + total);
-        scoreWriter(user, difficulty, score, total);
+        FileWriter(user, difficulty, score, total);
     }
 
     private static int fetch(String math) {
@@ -85,11 +85,11 @@ public class JarifGame {
         };
     }
 
-    private static void scoreWriter(String user, int difficulty, int score, int total) throws Exception {
+    private static void FileWriter(String user, int difficulty, int score, int total) throws Exception {
         SimpleDateFormat stuff = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String curDate = stuff.format(new Date());
         String record = user + ", " + fetch2(difficulty) + ", " + score + "/" + total + ", " + curDate + "\n";
-        scoreWriter writer = new scoreWriter("output.txt", true);
+        FileWriter writer = new FileWriter("output.txt", true);
         writer.write(record);
         writer.close();
     }
